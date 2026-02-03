@@ -1,0 +1,28 @@
+Usuario: admin
+Contraseña: admin123
+
+#correr el servidor
+node server.cjs
+
+#correr sistema
+npm run dev
+
+#construir para desplegar en nginx
+npm run build
+
+   # (En el servidor Rocky Linux)
+    sudo chown -R $USER:nginx /var/www/accesos-api
+    sudo chmod -R 775 /var/www/accesos-api
+
+#bajar
+pm2 stop portal-api
+pm2 start portal-api
+
+sudo chown -R $USER:nginx /var/www/accesosbackend/public
+
+sudo chmod 777 /var/www/accesosbackend/public/backgrounds
+sudo chmod 777 /var/www/accesosbackend/public/system-images
+
+Asegúrate de que no haya procesos de node corriendo: taskkill /F /IM node.exe (en Windows) o pkill node (en Linux/Mac).
+
+
